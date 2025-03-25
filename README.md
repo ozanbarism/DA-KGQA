@@ -22,7 +22,10 @@ Unlike traditional KGQA systems, DA-KGQA retrieves *point names*—identifiers o
 3. Create a `.env` file inside the `[API/](API/)` directory with your OpenAI key:
    > OPENAI_API_KEY = OPENAI_TOKEN
 3. Configure the file "[API/configs.py](API/configs.py)" with the URIs of the SPARQL endpoints (can be extracted from GraphDB) to be queried and the file name for query persistence and feedback.
-4. Run the teste.py script in "[API/](API/)" directory:
+4. (Optional but recommended) Activate the virtual environment in the `[API/]` directory:
+   ```bash
+   source venv/bin/activate
+5. Run the teste.py script in "[API/](API/)" directory:
    > python teste.py
 
 ## Citation
