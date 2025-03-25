@@ -1,34 +1,28 @@
-# Auto-KGQA
-![Logo](images/logo.png)
+# DA-KGQA
 
-Auto-KGQA, an autonomous domain-independent framework based on LLMs for text-to-SPARQL. Given a KG **K**, the framework selects fragments of the T-Box and A-Box of **K**, which the LLM uses to translate the user's original NL question **Q** to a SPARQL query on **K**. 
+**DA-KGQA** (Domain Adapted KGQA) is a domain-aware, zero-shot framework for text-to-SPARQL, based on Large Language Models (LLMs) designed and tested on Brick schema to analyze the potential of LLM-powered KGQA for CPS-IoT. It extends the Auto-KGQA pipeline with structured prompting and multi-agent query generation strategies, resulting in improved robustness and cost-efficiency across a range of model sizes and question complexities.
 
-Auto-KGQA generates **n** SPARQL queries that translate **Q** and selects the best one, based on the query results on **K**. Finally, Auto-KGQA generates an NL response to the user, based on **Q**, the selected SPARQL query **S**, and the result of the execution of **S** over **K**. The main goal of Auto-KGQA is the selection of smaller KG fragments thereby reducing the number of tokens passed as input to the LLM, which decreases the possibility of hallucinations with irrelevant elements in the input and increases the ability to support large KGs.
+Given a Knowledge Graph **K** and a natural language question **Q**, DA-KGQA selects relevant T-Box and A-Box fragments from **K**, then prompts the LLM to simulate multiple expert agents. Each agent independently generates a candidate SPARQL query using diverse strategies and reasoning depths. These queries are ranked by their execution results on **K**, and the best one is selected. Finally, DA-KGQA produces a natural language answer based on the user’s question, the selected query **S**, and the query results over **K**.
+
+Unlike traditional KGQA systems, DA-KGQA retrieves *point names*—identifiers of relevant timeseries data—not the data itself. This design aligns with systems like Energon and Mortar, enabling integration with external BAS or analytics engines.
+
+## Key Features
+- Tree-of-thought prompting with simulated expert agents
+- Fully zero-shot with no finetuning or examples
+- Selective KG fragmenting to reduce hallucinations
+- Outperforms Auto-KGQA on complex queries and with smaller LLMs for KGs created using Brick schema.
+- Cost-efficient: up to 48% reduction with small models
+
 ## Framework Architecture
-![Framework Architecture](images/framework.png)
-## Get Starting
-1. Start the triplestore with the desired Knowledge Graph
-2. Create the file ".env" in the directory "[API/](API/)" containing the environment variable OPENAI_API_KEY with your OpenAI token.
+![Framework Architecture](images/framework.pdf)
+
+## Getting Started
+
+1. Download GraphDB and upload vm3a.ttl as our KG.
+3. Create a `.env` file inside the `[API/](API/)` directory with your OpenAI key:
    > OPENAI_API_KEY = OPENAI_TOKEN
-3. Configure the file "[API/configs.py](API/configs.py)" with the URIs of the SPARQL endpoints to be queried and the file name for query persistence and feedback.
-4. Run the installation script in "[API/](API/)" directory:
-   > ./install.sh 
-5. Start the API service through the executable shell script on Linux systems or run the server directly through the python script in the directory "[API/](API/)":
-   > ./server.sh
-   or
-   > python server.py
-6. Inside the directory "[Web](Web/)", run the installation of npm dependencies with the command:
-   > npm install 
-7. Start the Web interface server in React using the command inside the directory:
-   > npm start
+3. Configure the file "[API/configs.py](API/configs.py)" with the URIs of the SPARQL endpoints (can be extracted from GraphDB) to be queried and the file name for query persistence and feedback.
+4. Run the teste.py script in "[API/](API/)" directory:
+   > python teste.py
 
-* The indexes creation process can be executed anytime by running: 
-  > python create_indexes.py
-## Demo
-The file "[Demo/ontology_example.ttl](Demo/ontology_example.ttl)" can be used with a demo KG to test the framework's functionalities. To use it, upload it to a triplestore and configure your SPARQL endpoint in the file "[API/configs.py](API/configs.py)".
-
-### KG Schema 
-![KG Schema](images/kg.png)
-
-### Interaction example
-![Interaction example](images/demo.png)
+If you
