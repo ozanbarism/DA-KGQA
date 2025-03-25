@@ -32,7 +32,7 @@ Unlike traditional KGQA systems, DA-KGQA retrieves *point names*—identifiers o
 If you use DA-KGQA in your research, please cite:
 
 ```bibtex
-@misc{baris2025dakgqa,
+@misc{baris2025towards,
   title={Towards Zero-shot Question Answering in CPS-IoT: Large Language Models and Knowledge Graphs},
   author={Ozan Baris and Gabe Fierro and Mario Bergés and Marco Pritoni},
   year={2025},
