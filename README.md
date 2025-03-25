@@ -14,7 +14,7 @@ Unlike traditional KGQA systems, DA-KGQA retrieves *point names*—identifiers o
 - Cost-efficient: up to 48% reduction with small models
 
 ## Framework Architecture
-![Framework Architecture](images/framework.pdf)
+![Framework Architecture](images/framework.png)
 
 ## Getting Started
 
